@@ -190,6 +190,8 @@
       <PreprocessorDefinitions>_WINDOWS;WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BrowseInformationFile>$(IntDir)bsc\</BrowseInformationFile>
       <BrowseInformation>true</BrowseInformation>
+      <ExceptionHandling>false</ExceptionHandling>
+      <DisableSpecificWarnings>4996;4146;4244;4267;4101;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <Lib>
       <TargetMachine>MachineX86</TargetMachine>
@@ -201,6 +203,22 @@
     <Bscmake>
       <PreserveSbr>true</PreserveSbr>
     </Bscmake>
+    <PostBuildEvent>
+      <Command>
+IF NOT EXIST "$(OutDir)..\..\include" ( MKDIR "$(OutDir)..\..\include" )
+IF NOT EXIST "$(OutDir)..\..\include\$(ProjectName)" ( MKDIR "$(OutDir)..\..\include\$(ProjectName)" )
+IF NOT EXIST "$(OutDir)..\..\licenses" ( MKDIR "$(OutDir)..\..\licenses" )
+COPY "$(ProjectDir)..\..\license.txt" "$(OutDir)..\..\licenses\$(ProjectName).txt" 
+
+COPY "$(ProjectDir)..\..\gme\gme.h" "$(OutDir)..\..\include\gme"
+</Command>
+    </PostBuildEvent>
+    <PreBuildEvent>
+      <Command>
+IF EXIST "$(OutDir)..\..\licenses\$(ProjectName).txt" ( DEL "$(OutDir)..\..\licenses\$(ProjectName).txt" )
+IF EXIST "$(OutDir)..\..\include\$(ProjectName)\" ( RD /s /q "$(OutDir)..\..\include\$(ProjectName)\" )
+      </Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -213,6 +231,8 @@
       <ProgramDataBaseFileName>$(OutDir)..\..\lib\$(PlatformTarget)\$(TargetName).pdb</ProgramDataBaseFileName>
       <BrowseInformationFile>$(IntDir)bsc\</BrowseInformationFile>
       <BrowseInformation>true</BrowseInformation>
+      <ExceptionHandling>false</ExceptionHandling>
+      <DisableSpecificWarnings>4996;4146;4244;4267;4101;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <Lib>
       <SubSystem>Windows</SubSystem>
@@ -223,6 +243,22 @@
     <Bscmake>
       <PreserveSbr>true</PreserveSbr>
     </Bscmake>
+    <PostBuildEvent>
+      <Command>
+IF NOT EXIST "$(OutDir)..\..\include" ( MKDIR "$(OutDir)..\..\include" )
+IF NOT EXIST "$(OutDir)..\..\include\$(ProjectName)" ( MKDIR "$(OutDir)..\..\include\$(ProjectName)" )
+IF NOT EXIST "$(OutDir)..\..\licenses" ( MKDIR "$(OutDir)..\..\licenses" )
+COPY "$(ProjectDir)..\..\license.txt" "$(OutDir)..\..\licenses\$(ProjectName).txt" 
+
+COPY "$(ProjectDir)..\..\gme\gme.h" "$(OutDir)..\..\include\gme"
+</Command>
+    </PostBuildEvent>
+    <PreBuildEvent>
+      <Command>
+IF EXIST "$(OutDir)..\..\licenses\$(ProjectName).txt" ( DEL "$(OutDir)..\..\licenses\$(ProjectName).txt" )
+IF EXIST "$(OutDir)..\..\include\$(ProjectName)\" ( RD /s /q "$(OutDir)..\..\include\$(ProjectName)\" )
+      </Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -237,6 +273,16 @@
       <PreprocessorDefinitions>_WINDOWS;WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BrowseInformationFile>$(IntDir)bsc\</BrowseInformationFile>
       <BrowseInformation>true</BrowseInformation>
+      <ExceptionHandling>false</ExceptionHandling>
+      <DisableSpecificWarnings>4996;4146;4244;4267;4101;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
+      <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
+      <OmitFramePointers>true</OmitFramePointers>
+      <StringPooling>true</StringPooling>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <FloatingPointExceptions>false</FloatingPointExceptions>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
     </ClCompile>
     <Lib>
       <TargetMachine>MachineX86</TargetMachine>
@@ -248,6 +294,22 @@
     <Bscmake>
       <PreserveSbr>true</PreserveSbr>
     </Bscmake>
+    <PostBuildEvent>
+      <Command>
+IF NOT EXIST "$(OutDir)..\..\include" ( MKDIR "$(OutDir)..\..\include" )
+IF NOT EXIST "$(OutDir)..\..\include\$(ProjectName)" ( MKDIR "$(OutDir)..\..\include\$(ProjectName)" )
+IF NOT EXIST "$(OutDir)..\..\licenses" ( MKDIR "$(OutDir)..\..\licenses" )
+COPY "$(ProjectDir)..\..\license.txt" "$(OutDir)..\..\licenses\$(ProjectName).txt" 
+
+COPY "$(ProjectDir)..\..\gme\gme.h" "$(OutDir)..\..\include\gme"
+</Command>
+    </PostBuildEvent>
+    <PreBuildEvent>
+      <Command>
+IF EXIST "$(OutDir)..\..\licenses\$(ProjectName).txt" ( DEL "$(OutDir)..\..\licenses\$(ProjectName).txt" )
+IF EXIST "$(OutDir)..\..\include\$(ProjectName)\" ( RD /s /q "$(OutDir)..\..\include\$(ProjectName)\" )
+      </Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -262,6 +324,16 @@
       <PreprocessorDefinitions>_WINDOWS;WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BrowseInformationFile>$(IntDir)bsc\</BrowseInformationFile>
       <BrowseInformation>true</BrowseInformation>
+      <ExceptionHandling>false</ExceptionHandling>
+      <DisableSpecificWarnings>4996;4146;4244;4267;4101;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
+      <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
+      <OmitFramePointers>true</OmitFramePointers>
+      <StringPooling>true</StringPooling>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <FloatingPointExceptions>false</FloatingPointExceptions>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
     </ClCompile>
     <Lib>
       <SubSystem>Windows</SubSystem>
@@ -272,6 +344,22 @@
     <Bscmake>
       <PreserveSbr>true</PreserveSbr>
     </Bscmake>
+    <PostBuildEvent>
+      <Command>
+IF NOT EXIST "$(OutDir)..\..\include" ( MKDIR "$(OutDir)..\..\include" )
+IF NOT EXIST "$(OutDir)..\..\include\$(ProjectName)" ( MKDIR "$(OutDir)..\..\include\$(ProjectName)" )
+IF NOT EXIST "$(OutDir)..\..\licenses" ( MKDIR "$(OutDir)..\..\licenses" )
+COPY "$(ProjectDir)..\..\license.txt" "$(OutDir)..\..\licenses\$(ProjectName).txt" 
+
+COPY "$(ProjectDir)..\..\gme\gme.h" "$(OutDir)..\..\include\gme"
+</Command>
+    </PostBuildEvent>
+    <PreBuildEvent>
+      <Command>
+IF EXIST "$(OutDir)..\..\licenses\$(ProjectName).txt" ( DEL "$(OutDir)..\..\licenses\$(ProjectName).txt" )
+IF EXIST "$(OutDir)..\..\include\$(ProjectName)\" ( RD /s /q "$(OutDir)..\..\include\$(ProjectName)\" )
+      </Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DebugDLL|Win32'">
     <ClCompile>
@@ -284,6 +372,9 @@
       <PreprocessorDefinitions>_DEBUG;_WINDOWS;_USRDLL;WIN32;DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BrowseInformationFile>$(IntDir)bsc\</BrowseInformationFile>
       <BrowseInformation>true</BrowseInformation>
+      <BufferSecurityCheck>true</BufferSecurityCheck>
+      <ExceptionHandling>false</ExceptionHandling>
+      <DisableSpecificWarnings>4996;4146;4244;4267;4101;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -295,10 +386,27 @@
       <AdditionalLibraryDirectories>$(OutDir)..\..\lib\$(PlatformTarget)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
       <LargeAddressAware>true</LargeAddressAware>
+      <ModuleDefinitionFile>libgme.def</ModuleDefinitionFile>
     </Link>
     <Bscmake>
       <PreserveSbr>true</PreserveSbr>
     </Bscmake>
+    <PostBuildEvent>
+      <Command>
+IF NOT EXIST "$(OutDir)..\..\include" ( MKDIR "$(OutDir)..\..\include" )
+IF NOT EXIST "$(OutDir)..\..\include\$(ProjectName)" ( MKDIR "$(OutDir)..\..\include\$(ProjectName)" )
+IF NOT EXIST "$(OutDir)..\..\licenses" ( MKDIR "$(OutDir)..\..\licenses" )
+COPY "$(ProjectDir)..\..\license.txt" "$(OutDir)..\..\licenses\$(ProjectName).txt" 
+
+COPY "$(ProjectDir)..\..\gme\gme.h" "$(OutDir)..\..\include\gme"
+</Command>
+    </PostBuildEvent>
+    <PreBuildEvent>
+      <Command>
+IF EXIST "$(OutDir)..\..\licenses\$(ProjectName).txt" ( DEL "$(OutDir)..\..\licenses\$(ProjectName).txt" )
+IF EXIST "$(OutDir)..\..\include\$(ProjectName)\" ( RD /s /q "$(OutDir)..\..\include\$(ProjectName)\" )
+      </Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DebugDLL|x64'">
     <ClCompile>
@@ -311,6 +419,8 @@
       <PreprocessorDefinitions>_DEBUG;_WINDOWS;_USRDLL;WIN32;DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BrowseInformationFile>$(IntDir)bsc\</BrowseInformationFile>
       <BrowseInformation>true</BrowseInformation>
+      <ExceptionHandling>false</ExceptionHandling>
+      <DisableSpecificWarnings>4996;4146;4244;4267;4101;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -321,10 +431,27 @@
       <ProgramDatabaseFile>$(OutDir)..\..\lib\$(PlatformTarget)\$(TargetName).pdb</ProgramDatabaseFile>
       <AdditionalLibraryDirectories>$(OutDir)..\..\lib\$(PlatformTarget)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <ModuleDefinitionFile>libgme.def</ModuleDefinitionFile>
     </Link>
     <Bscmake>
       <PreserveSbr>true</PreserveSbr>
     </Bscmake>
+    <PostBuildEvent>
+      <Command>
+IF NOT EXIST "$(OutDir)..\..\include" ( MKDIR "$(OutDir)..\..\include" )
+IF NOT EXIST "$(OutDir)..\..\include\$(ProjectName)" ( MKDIR "$(OutDir)..\..\include\$(ProjectName)" )
+IF NOT EXIST "$(OutDir)..\..\licenses" ( MKDIR "$(OutDir)..\..\licenses" )
+COPY "$(ProjectDir)..\..\license.txt" "$(OutDir)..\..\licenses\$(ProjectName).txt" 
+
+COPY "$(ProjectDir)..\..\gme\gme.h" "$(OutDir)..\..\include\gme"
+</Command>
+    </PostBuildEvent>
+    <PreBuildEvent>
+      <Command>
+IF EXIST "$(OutDir)..\..\licenses\$(ProjectName).txt" ( DEL "$(OutDir)..\..\licenses\$(ProjectName).txt" )
+IF EXIST "$(OutDir)..\..\include\$(ProjectName)\" ( RD /s /q "$(OutDir)..\..\include\$(ProjectName)\" )
+      </Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseDLL|Win32'">
     <ClCompile>
@@ -339,6 +466,16 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BrowseInformationFile>$(IntDir)bsc\</BrowseInformationFile>
       <BrowseInformation>true</BrowseInformation>
+      <ExceptionHandling>false</ExceptionHandling>
+      <DisableSpecificWarnings>4996;4146;4244;4267;4101;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
+      <OmitFramePointers>true</OmitFramePointers>
+      <StringPooling>true</StringPooling>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <FloatingPointExceptions>false</FloatingPointExceptions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -352,10 +489,27 @@
       <LargeAddressAware>true</LargeAddressAware>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <ModuleDefinitionFile>libgme.def</ModuleDefinitionFile>
     </Link>
     <Bscmake>
       <PreserveSbr>true</PreserveSbr>
     </Bscmake>
+    <PostBuildEvent>
+      <Command>
+IF NOT EXIST "$(OutDir)..\..\include" ( MKDIR "$(OutDir)..\..\include" )
+IF NOT EXIST "$(OutDir)..\..\include\$(ProjectName)" ( MKDIR "$(OutDir)..\..\include\$(ProjectName)" )
+IF NOT EXIST "$(OutDir)..\..\licenses" ( MKDIR "$(OutDir)..\..\licenses" )
+COPY "$(ProjectDir)..\..\license.txt" "$(OutDir)..\..\licenses\$(ProjectName).txt" 
+
+COPY "$(ProjectDir)..\..\gme\gme.h" "$(OutDir)..\..\include\gme"
+</Command>
+    </PostBuildEvent>
+    <PreBuildEvent>
+      <Command>
+IF EXIST "$(OutDir)..\..\licenses\$(ProjectName).txt" ( DEL "$(OutDir)..\..\licenses\$(ProjectName).txt" )
+IF EXIST "$(OutDir)..\..\include\$(ProjectName)\" ( RD /s /q "$(OutDir)..\..\include\$(ProjectName)\" )
+      </Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseDLL|x64'">
     <ClCompile>
@@ -370,6 +524,16 @@
       <PreprocessorDefinitions>NDEBUG;_WINDOWS;_USRDLL;WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BrowseInformationFile>$(IntDir)bsc\</BrowseInformationFile>
       <BrowseInformation>true</BrowseInformation>
+      <ExceptionHandling>false</ExceptionHandling>
+      <DisableSpecificWarnings>4996;4146;4244;4267;4101;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
+      <OmitFramePointers>true</OmitFramePointers>
+      <StringPooling>true</StringPooling>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <FloatingPointExceptions>false</FloatingPointExceptions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -382,11 +546,136 @@
       <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <ModuleDefinitionFile>libgme.def</ModuleDefinitionFile>
     </Link>
     <Bscmake>
       <PreserveSbr>true</PreserveSbr>
     </Bscmake>
+    <PostBuildEvent>
+      <Command>
+IF NOT EXIST "$(OutDir)..\..\include" ( MKDIR "$(OutDir)..\..\include" )
+IF NOT EXIST "$(OutDir)..\..\include\$(ProjectName)" ( MKDIR "$(OutDir)..\..\include\$(ProjectName)" )
+IF NOT EXIST "$(OutDir)..\..\licenses" ( MKDIR "$(OutDir)..\..\licenses" )
+COPY "$(ProjectDir)..\..\license.txt" "$(OutDir)..\..\licenses\$(ProjectName).txt" 
+
+COPY "$(ProjectDir)..\..\gme\gme.h" "$(OutDir)..\..\include\gme"
+</Command>
+    </PostBuildEvent>
+    <PreBuildEvent>
+      <Command>
+IF EXIST "$(OutDir)..\..\licenses\$(ProjectName).txt" ( DEL "$(OutDir)..\..\licenses\$(ProjectName).txt" )
+IF EXIST "$(OutDir)..\..\include\$(ProjectName)\" ( RD /s /q "$(OutDir)..\..\include\$(ProjectName)\" )
+      </Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\gme\Ay_Apu.cpp" />
+    <ClCompile Include="..\..\gme\Ay_Cpu.cpp" />
+    <ClCompile Include="..\..\gme\Ay_Emu.cpp" />
+    <ClCompile Include="..\..\gme\Blip_Buffer.cpp" />
+    <ClCompile Include="..\..\gme\Classic_Emu.cpp" />
+    <ClCompile Include="..\..\gme\Data_Reader.cpp" />
+    <ClCompile Include="..\..\gme\Dual_Resampler.cpp" />
+    <ClCompile Include="..\..\gme\Effects_Buffer.cpp" />
+    <ClCompile Include="..\..\gme\Fir_Resampler.cpp" />
+    <ClCompile Include="..\..\gme\Gbs_Emu.cpp" />
+    <ClCompile Include="..\..\gme\Gb_Apu.cpp" />
+    <ClCompile Include="..\..\gme\Gb_Cpu.cpp" />
+    <ClCompile Include="..\..\gme\Gb_Oscs.cpp" />
+    <ClCompile Include="..\..\gme\gme.cpp" />
+    <ClCompile Include="..\..\gme\Gme_File.cpp" />
+    <ClCompile Include="..\..\gme\Gym_Emu.cpp" />
+    <ClCompile Include="..\..\gme\Hes_Apu.cpp" />
+    <ClCompile Include="..\..\gme\Hes_Cpu.cpp" />
+    <ClCompile Include="..\..\gme\Hes_Emu.cpp" />
+    <ClCompile Include="..\..\gme\Kss_Cpu.cpp" />
+    <ClCompile Include="..\..\gme\Kss_Emu.cpp" />
+    <ClCompile Include="..\..\gme\Kss_Scc_Apu.cpp" />
+    <ClCompile Include="..\..\gme\M3u_Playlist.cpp" />
+    <ClCompile Include="..\..\gme\Multi_Buffer.cpp" />
+    <ClCompile Include="..\..\gme\Music_Emu.cpp" />
+    <ClCompile Include="..\..\gme\Nes_Apu.cpp" />
+    <ClCompile Include="..\..\gme\Nes_Cpu.cpp" />
+    <ClCompile Include="..\..\gme\Nes_Fme7_Apu.cpp" />
+    <ClCompile Include="..\..\gme\Nes_Namco_Apu.cpp" />
+    <ClCompile Include="..\..\gme\Nes_Oscs.cpp" />
+    <ClCompile Include="..\..\gme\Nes_Vrc6_Apu.cpp" />
+    <ClCompile Include="..\..\gme\Nsfe_Emu.cpp" />
+    <ClCompile Include="..\..\gme\Nsf_Emu.cpp" />
+    <ClCompile Include="..\..\gme\Sap_Apu.cpp" />
+    <ClCompile Include="..\..\gme\Sap_Cpu.cpp" />
+    <ClCompile Include="..\..\gme\Sap_Emu.cpp" />
+    <ClCompile Include="..\..\gme\Sms_Apu.cpp" />
+    <ClCompile Include="..\..\gme\Snes_Spc.cpp" />
+    <ClCompile Include="..\..\gme\Spc_Cpu.cpp" />
+    <ClCompile Include="..\..\gme\Spc_Dsp.cpp" />
+    <ClCompile Include="..\..\gme\Spc_Emu.cpp" />
+    <ClCompile Include="..\..\gme\Spc_Filter.cpp" />
+    <ClCompile Include="..\..\gme\Vgm_Emu.cpp" />
+    <ClCompile Include="..\..\gme\Vgm_Emu_Impl.cpp" />
+    <ClCompile Include="..\..\gme\Ym2413_Emu.cpp" />
+    <ClCompile Include="..\..\gme\Ym2612_Emu.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\gme\Ay_Apu.h" />
+    <ClInclude Include="..\..\gme\Ay_Cpu.h" />
+    <ClInclude Include="..\..\gme\Ay_Emu.h" />
+    <ClInclude Include="..\..\gme\blargg_common.h" />
+    <ClInclude Include="..\..\gme\blargg_config.h" />
+    <ClInclude Include="..\..\gme\blargg_endian.h" />
+    <ClInclude Include="..\..\gme\blargg_source.h" />
+    <ClInclude Include="..\..\gme\Blip_Buffer.h" />
+    <ClInclude Include="..\..\gme\Classic_Emu.h" />
+    <ClInclude Include="..\..\gme\Data_Reader.h" />
+    <ClInclude Include="..\..\gme\Dual_Resampler.h" />
+    <ClInclude Include="..\..\gme\Effects_Buffer.h" />
+    <ClInclude Include="..\..\gme\Fir_Resampler.h" />
+    <ClInclude Include="..\..\gme\Gbs_Emu.h" />
+    <ClInclude Include="..\..\gme\Gb_Apu.h" />
+    <ClInclude Include="..\..\gme\Gb_Cpu.h" />
+    <ClInclude Include="..\..\gme\gb_cpu_io.h" />
+    <ClInclude Include="..\..\gme\Gb_Oscs.h" />
+    <ClInclude Include="..\..\gme\gme.h" />
+    <ClInclude Include="..\..\gme\Gme_File.h" />
+    <ClInclude Include="..\..\gme\Gym_Emu.h" />
+    <ClInclude Include="..\..\gme\Hes_Apu.h" />
+    <ClInclude Include="..\..\gme\Hes_Cpu.h" />
+    <ClInclude Include="..\..\gme\hes_cpu_io.h" />
+    <ClInclude Include="..\..\gme\Hes_Emu.h" />
+    <ClInclude Include="..\..\gme\Kss_Cpu.h" />
+    <ClInclude Include="..\..\gme\Kss_Emu.h" />
+    <ClInclude Include="..\..\gme\Kss_Scc_Apu.h" />
+    <ClInclude Include="..\..\gme\M3u_Playlist.h" />
+    <ClInclude Include="..\..\gme\Multi_Buffer.h" />
+    <ClInclude Include="..\..\gme\Music_Emu.h" />
+    <ClInclude Include="..\..\gme\Nes_Apu.h" />
+    <ClInclude Include="..\..\gme\Nes_Cpu.h" />
+    <ClInclude Include="..\..\gme\nes_cpu_io.h" />
+    <ClInclude Include="..\..\gme\Nes_Fme7_Apu.h" />
+    <ClInclude Include="..\..\gme\Nes_Namco_Apu.h" />
+    <ClInclude Include="..\..\gme\Nes_Oscs.h" />
+    <ClInclude Include="..\..\gme\Nes_Vrc6_Apu.h" />
+    <ClInclude Include="..\..\gme\Nsfe_Emu.h" />
+    <ClInclude Include="..\..\gme\Nsf_Emu.h" />
+    <ClInclude Include="..\..\gme\Sap_Apu.h" />
+    <ClInclude Include="..\..\gme\Sap_Cpu.h" />
+    <ClInclude Include="..\..\gme\sap_cpu_io.h" />
+    <ClInclude Include="..\..\gme\Sap_Emu.h" />
+    <ClInclude Include="..\..\gme\Sms_Apu.h" />
+    <ClInclude Include="..\..\gme\Sms_Oscs.h" />
+    <ClInclude Include="..\..\gme\Snes_Spc.h" />
+    <ClInclude Include="..\..\gme\Spc_Cpu.h" />
+    <ClInclude Include="..\..\gme\Spc_Dsp.h" />
+    <ClInclude Include="..\..\gme\Spc_Emu.h" />
+    <ClInclude Include="..\..\gme\Spc_Filter.h" />
+    <ClInclude Include="..\..\gme\Vgm_Emu.h" />
+    <ClInclude Include="..\..\gme\Vgm_Emu_Impl.h" />
+    <ClInclude Include="..\..\gme\Ym2413_Emu.h" />
+    <ClInclude Include="..\..\gme\Ym2612_Emu.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="libgme.def" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
